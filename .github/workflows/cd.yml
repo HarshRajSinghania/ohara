@@ -2,6 +2,7 @@ name: CD
 
 # Publishes the Docker image to the GitHub Container Registry once CI passes on main or on a version tag.
 # For a tag push, workflow_run's head_branch is the tag name, so the version comes from it.
+# For a version tag, it then creates the GitHub release, with notes generated from the pull requests since the last tag.
 # Then, if the repository sets a DEPLOY_COMMAND variable, runs it to deploy main. The command gets the image
 # as $IMAGE and the DEPLOY_TOKEN secret as $DEPLOY_TOKEN, so each instance keeps its hosting details out of the code.
 
@@ -27,6 +28,7 @@ jobs:
       packages: write
     outputs:
       image: ${{ steps.image.outputs.image }}
+      release: ${{ steps.image.outputs.release }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -64,6 +66,18 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  release:
+    needs: image
+    if: needs.image.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - run: gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.workflow_run.head_branch }}
 
   deploy:
     needs: image

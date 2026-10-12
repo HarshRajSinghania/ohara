@@ -1,5 +1,5 @@
 ---
-covers: [ntrossat/ohara:Makefile, ntrossat/ohara:backend/pyproject.toml, ntrossat/ohara:frontend/package.json, ntrossat/ohara:.github/workflows/ci.yml]
+covers: [ntrossat/ohara:Makefile, ntrossat/ohara:compose.dev.yml, ntrossat/ohara:backend/pyproject.toml, ntrossat/ohara:frontend/package.json, ntrossat/ohara:.github/workflows/ci.yml]
 verified: 2026-10-09
 ---
 
@@ -22,7 +22,7 @@ The whole app, rebuilt on each code change:
 
 ```bash
 cp .env.example .env     # OHARA_URL=http://localhost:8000
-make dev                 # docker compose up --build --watch
+make dev                 # builds and runs compose.dev.yml, with --watch
 ```
 
 `make init` starts over: it removes the container, the image, and the data volume, then runs `make dev`. Delete the old GitHub App on GitHub by hand, since setup creates a new one.
@@ -79,7 +79,8 @@ frontend/src/        React app
 docs/                these docs, synced into Ohara by .ohara.yml
 .github/workflows/   CI (tests) and CD (image and deploy)
 Dockerfile           builds the frontend, then the backend image
-docker-compose.yml   one service and the data volume
+compose.yml          runs the published image
+compose.dev.yml      builds from source, for make dev
 ```
 
 ## Conventions
@@ -101,7 +102,7 @@ docker-compose.yml   one service and the data volume
    git push origin v1.2.0
    ```
 
-CI runs on the tag. Once it passes, CD publishes the image as `1.2.0`, `1.2`, and `latest`. Tags never run the deploy command. See [Operate](../install/operate.md#images).
+CI runs on the tag. Once it passes, CD publishes the image as `1.2.0`, `1.2`, and `latest`, then creates the GitHub release with notes generated from the merged pull requests. Tags never run the deploy command. See [Operate](../install/operate.md#images).
 
 ## Contribute
 

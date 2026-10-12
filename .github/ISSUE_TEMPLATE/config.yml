@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/ntrossat/ohara/tree/main/docs
+    about: Install, configure, and use Ohara.
+  - name: Report a security issue
+    url: https://github.com/ntrossat/ohara/security/advisories/new
+    about: Report it privately, as described in SECURITY.md. Never in a public issue.

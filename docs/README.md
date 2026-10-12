@@ -58,4 +58,5 @@ Access mirrors the docs repository. A public repository makes a public website. 
 | Set up the team workflow | [Team workflow](use/team-workflow.md) |
 | Understand the internals | [Architecture](developers/architecture.md) |
 | Change or extend Ohara | [Customize](developers/customize.md) |
+| See what is planned | [Roadmap](roadmap.md) |
 | Contribute | [Development](developers/development.md) |

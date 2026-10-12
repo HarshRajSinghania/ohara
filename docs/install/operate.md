@@ -1,5 +1,5 @@
 ---
-covers: [ntrossat/ohara:Dockerfile, ntrossat/ohara:docker-compose.yml, ntrossat/ohara:.github/workflows/*, ntrossat/ohara:backend/ohara/db.py, ntrossat/ohara:backend/ohara/store.py]
+covers: [ntrossat/ohara:Dockerfile, ntrossat/ohara:compose.yml, ntrossat/ohara:.github/workflows/*, ntrossat/ohara:backend/ohara/db.py, ntrossat/ohara:backend/ohara/store.py]
 ---
 
 # Operate
@@ -35,9 +35,11 @@ The docs themselves are in GitHub, so a lost volume costs the setup, the sign-in
 ## Update Ohara
 
 ```bash
-git pull
-docker compose up -d --build
+docker compose pull
+docker compose up -d
 ```
+
+`compose.yml` runs the `latest` image. To pin a version, replace `latest` with a tag, such as `0.1`.
 
 The data volume is kept: settings, sessions, MCP sign-ins, and docs survive the update. On each start, Ohara downloads the docs again and checks every code repository's sync.
 
@@ -57,9 +59,11 @@ Each push to `main` and each `v*` tag that passes CI publishes an image to the G
 | `sha-<commit>` | One commit, by its first 12 characters |
 | `<version>`, `<major>.<minor>`, `latest` | A `v*` release tag |
 
+A `v*` tag also creates a GitHub release, with notes listing the pull requests merged since the previous tag.
+
 The image name follows the repository, `ghcr.io/<owner>/<repository>`, so a fork publishes its own.
 
-The repository's `docker-compose.yml` builds the image from source. A Compose file that runs the published image is on the roadmap.
+`compose.yml` runs the published image. `compose.dev.yml` builds it from source, for development.
 
 ## Continuous deployment
 

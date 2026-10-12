@@ -1,5 +1,5 @@
 ---
-covers: [ntrossat/ohara:Dockerfile, ntrossat/ohara:docker-compose.yml, ntrossat/ohara:Makefile, ntrossat/ohara:backend/ohara/config.py, ntrossat/ohara:frontend/src/Setup.tsx]
+covers: [ntrossat/ohara:Dockerfile, ntrossat/ohara:compose.yml, ntrossat/ohara:Makefile, ntrossat/ohara:backend/ohara/config.py, ntrossat/ohara:frontend/src/Setup.tsx]
 verified: 2026-10-09
 ---
 
@@ -20,26 +20,30 @@ Ohara is light: a small server and a SQLite database. It holds each repository d
 
 - One instance serves one docs repository, from one GitHub App installation on one account.
 - Run one container per instance. The database and the docs snapshot live in its volume, so replicas don't share them.
-- Ohara builds the image from source. A Compose file that runs the published image is on the roadmap.
 
 ## Quick start
 
-1. Get the code and set the address people will use to open Ohara:
+1. Download the Compose file, which runs the published image:
 
    ```bash
-   git clone https://github.com/ntrossat/ohara.git
-   cd ohara
-   cp .env.example .env
-   # edit OHARA_URL in .env, such as https://docs.acme.com
+   curl -fsSLO https://raw.githubusercontent.com/ntrossat/ohara/main/compose.yml
    ```
 
-2. Start Ohara:
+2. Set the address people will use to open Ohara, in a `.env` file next to `compose.yml`. Skip this step to try Ohara at `http://localhost:8000`:
+
+   ```bash
+   echo "OHARA_URL=https://docs.acme.com" > .env
+   ```
+
+3. Start Ohara:
 
    ```bash
    docker compose up -d
    ```
 
-3. Open `OHARA_URL`. Ohara shows the setup page.
+4. Open `OHARA_URL`. Ohara shows the setup page.
+
+To build the image from source instead, clone the repository and run `make dev`: see [Development](../developers/development.md).
 
 ## Settings
 
@@ -47,7 +51,7 @@ Ohara is light: a small server and a SQLite database. It holds each repository d
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `OHARA_URL` | Required | The public address of Ohara, without a trailing slash. It can include a path |
+| `OHARA_URL` | `http://localhost:8000` | The public address of Ohara, without a trailing slash. It can include a path |
 | `OHARA_DATA_DIR` | `/data` | Where Ohara keeps its data. For a run outside Docker |
 | `OHARA_STATIC_DIR` | The built React app in the image | Where the React app lives. For a run outside Docker |
 
