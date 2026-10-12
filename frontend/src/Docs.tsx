@@ -199,6 +199,18 @@ function Search({ value, onChange }: { value: string; onChange: (value: string) 
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
+      const target = event.target;
+      const typing =
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        (target instanceof HTMLElement && target.isContentEditable);
+
+      if (event.key === "/" && !typing) {
+        event.preventDefault();
+        input.current?.focus();
+        return;
+      }
+
       if ((event.metaKey || event.ctrlKey) && event.key === "k") {
         event.preventDefault();
         input.current?.focus();
