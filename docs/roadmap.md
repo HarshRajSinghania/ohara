@@ -4,9 +4,12 @@ Ohara stays focused on a few core features. This page lists what is planned next
 
 ## Planned
 
-| Feature | What it does |
-|---|---|
-| AI chat over the docs | Ask questions on the website and get answers grounded in the docs, with links to the pages they come from |
+- Skills
+- Alignment instructions
+- API ingestion
+- Chat agent
+- Edit tools
+- Auto update from source
 
 ## Suggest a feature
 
