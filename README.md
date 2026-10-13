@@ -1,6 +1,12 @@
 # Ohara
 
+[![Release](https://img.shields.io/github/v/release/ntrossat/ohara)](https://github.com/ntrossat/ohara/releases)
+[![CI](https://github.com/ntrossat/ohara/actions/workflows/ci.yml/badge.svg)](https://github.com/ntrossat/ohara/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/ntrossat/ohara)](LICENSE)
+
 **One place for all company knowledge, kept up to date by AI. You approve every change.**
+
+**[Live demo](https://ohara.trossat.com/docs)**: Ohara's own docs, served by Ohara.
 
 Ohara is an open-source documentation manager. Your docs and engineering guidelines live in one GitHub repository. People read them on a website, and AI agents read them through MCP. When the code changes, AI proposes the matching doc update as a pull request, and a human merges it.
 
@@ -51,6 +57,8 @@ The full documentation is at [ohara.trossat.com/docs](https://ohara.trossat.com/
 ## Contributing
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [roadmap](docs/roadmap.md), and report security issues as described in [SECURITY.md](SECURITY.md).
+
+If Ohara is useful to you, star the repository: it helps other teams find it.
 
 ## License
 
