@@ -24,6 +24,7 @@ Project docs, in `docs/` (synced to `apps/ohara/`):
 - `docs/configure/`: the docs repository layout, code repositories (covers, docs pull requests from a code branch, `.ohara.yml` sync), and access.
 - `docs/use/`: coding assistants, the `/ohara:*` commands, chat apps, and the team workflow.
 - `docs/developers/`: architecture, API, development, and customizing.
+- `docs/roadmap.md`: what is planned next.
 
 Workflow:
 

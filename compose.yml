@@ -1,0 +1,16 @@
+# Runs the published Ohara image. Start it with `docker compose up -d`, then open OHARA_URL.
+# OHARA_URL defaults to http://localhost:8000. For a public address, set it in a .env file next to this one.
+# Update with `docker compose pull && docker compose up -d`. To pin a version, replace `latest`, such as `0.1`.
+services:
+  ohara:
+    image: ghcr.io/ntrossat/ohara:latest
+    ports:
+      - "8000:8000"
+    environment:
+      OHARA_URL: ${OHARA_URL:-http://localhost:8000}
+    volumes:
+      - ohara-data:/data
+    restart: unless-stopped
+
+volumes:
+  ohara-data:

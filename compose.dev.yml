@@ -1,3 +1,4 @@
+# Builds Ohara from source, for development: `make dev`. To run Ohara, use compose.yml.
 services:
   ohara:
     build: .

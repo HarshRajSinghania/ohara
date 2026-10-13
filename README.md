@@ -37,13 +37,10 @@ From Claude Code, once connected to Ohara's MCP server:
 ## Quick start
 
 ```sh
-git clone https://github.com/ntrossat/ohara.git
-cd ohara
-cp .env.example .env    # set OHARA_URL
-docker compose up -d
+curl -fsSLO https://raw.githubusercontent.com/ntrossat/ohara/main/compose.yml && docker compose up -d
 ```
 
-Open `OHARA_URL`. The setup page creates a GitHub App: install it on your docs repository and your code repositories. Then connect your coding assistant and run `/ohara:init` in each project:
+Open `http://localhost:8000`. For a public address, set `OHARA_URL` in a `.env` file next to `compose.yml`. The setup page creates a GitHub App: install it on your docs repository and your code repositories. Then connect your coding assistant and run `/ohara:init` in each project:
 
 ```sh
 claude mcp add --transport http ohara <OHARA_URL>/mcp
@@ -53,7 +50,7 @@ The full documentation is at [ohara.trossat.com/docs](https://ohara.trossat.com/
 
 ## Contributing
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md), and report security issues as described in [SECURITY.md](SECURITY.md).
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [roadmap](docs/roadmap.md), and report security issues as described in [SECURITY.md](SECURITY.md).
 
 ## License
 
